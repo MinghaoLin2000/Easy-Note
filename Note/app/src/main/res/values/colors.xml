@@ -23,7 +23,8 @@
     <color name="i">#E6CEAC</color>
     <color name="o">#ECAD9E</color>
     <color name="p">#F4606C</color>
-
+    <!--登陆框的界面颜色-->
+    <color name="login_widget">#7adfb8</color>
 
 
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--圆角的弧度-->
+
+    <corners android:radius="@dimen/radius_button"></corners>
+    <!--填充颜色-->
+    <solid android:color="@color/white"></solid>
+    <!--边框-->
+    <stroke
+        android:width="@dimen/divider_small"
+        android:color="@color/white"></stroke>
+</shape>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity"
+    android:background="@color/login_widget">
+    <LinearLayout
+        android:background="@drawable/selector_color_primary_reverse"
+        android:layout_marginLeft="50dp"
+        android:layout_width="250dp"
+        android:layout_height="500dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_marginTop="-72dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Register Right Now"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:textSize="24sp"
+            />
+
+        <EditText
+            android:layout_marginTop="40dp"
+           android:layout_width="250dp"
+           android:layout_height="wrap_content"
+            android:id="@+id/et_register_username"
+           android:hint="Username"
+           />
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:id="@+id/et_register_password"
+            />
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="Confirm Password"
+            android:id="@+id/et_register_comfirm_password"
+            />
+            <Button
+                android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/bt_register_submit"
+                android:text="submit"
+                />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,6 +1,7 @@
 package com.example.note;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,10 +20,15 @@ public class EditActivity extends BaseActivity {
     private int openMode=0;
     private int tag=1;
     private Intent intent=new Intent();
+    private Toolbar myToolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
+        myToolbar=findViewById(R.id.myToolBar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         et=findViewById(R.id.et);
         Intent getIntent=getIntent();
         openMode=getIntent.getIntExtra("mode",0);

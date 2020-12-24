@@ -4,5 +4,8 @@
 
     <corners android:radius="@dimen/radius_button"></corners>
     <!--填充颜色-->
-    <solid android:color="@color/black"></solid>
+    <solid android:color="@color/login_widget"></solid>
+    <stroke
+        android:width="@dimen/divider_small"
+        android:color="@color/white"></stroke>
 </shape>
