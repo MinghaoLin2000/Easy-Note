@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--按钮按下的状态-->
+    <item android:state_pressed="true" android:drawable="@drawable/shape_border_color_primary"></item>
+    <!--按钮默认状态-->
+    <item android:drawable="@drawable/shape_color_primary"></item>
+
+</selector>
