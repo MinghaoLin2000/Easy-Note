@@ -16,12 +16,16 @@ public class NoteDatabase extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE "+TABLE_NAME+"("+ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"+ CONTENT+" TEXT NOT NULL,"+TIME+" TEXT NOT NULL,"+MODE+" INTEGER DEFAULT 1)");
+        db.execSQL("CREATE TABLE notes(id INTEGER PRIMARY KEY AUTOINCREMENT,content TEXT NOT NULL,time TEXT NOT NULL,mode INTEGER DEFAULT 1)");
+        db.execSQL("create table user(id integer primary key,username text,password text,bookeditor text)");
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        db.execSQL("DROP TABLE IF EXISTS user");
+        db.execSQL("DROP TABLE IF EXISTS notes");
+        onCreate(db);
 
     }
 }

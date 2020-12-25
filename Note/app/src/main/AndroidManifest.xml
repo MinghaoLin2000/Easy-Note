@@ -18,7 +18,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".EditActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity"
+            android:theme="@style/ThemeNoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

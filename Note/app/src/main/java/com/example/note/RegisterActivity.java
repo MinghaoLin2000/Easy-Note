@@ -16,7 +16,7 @@ import com.example.note.db.UserDatabase;
 import com.example.note.domain.User;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
-    private UserDatabase dbHelper;
+    private NoteDatabase dbHelper;
     private EditText et_username;
     private EditText et_password;
     private EditText et_confirm_password;
@@ -55,14 +55,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     Toast.makeText(this, "两次密码输入不一致", Toast.LENGTH_SHORT).show();
                 }else
                 {
-                    UserCRUD crud=new UserCRUD(context);
-                    User user=new User(username,password);
-                    crud.open();
-                    crud.addNote(user);
-                    crud.close();
-                 Toast.makeText(this, "注册成功,快去登陆", Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
-                    finish();
+                    CRUD crud=new CRUD(context);
+                        User user=new User(username,password);
+                        crud.open();
+                        crud.addUser(user);
+                        crud.close();
+                        Toast.makeText(this, "注册成功,快去登陆", Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
+                        finish();
+
+
+
                 }
         }
     }

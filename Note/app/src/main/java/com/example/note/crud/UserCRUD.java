@@ -11,6 +11,9 @@ import com.example.note.NoteDatabase;
 import com.example.note.db.UserDatabase;
 import com.example.note.domain.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserCRUD {
     SQLiteOpenHelper dbHandler;
     SQLiteDatabase db;
@@ -41,5 +44,28 @@ public class UserCRUD {
         user.setId(insertId);
         return user;
     }
+    public User getUser(long id)
+    {
+        Cursor cursor=db.query(UserDatabase.TABLE_NAME,columns,UserDatabase.ID+"=?",new String[]{String.valueOf(id)},null,null,null,null);
+        if(cursor!=null)
+        {
+            cursor.moveToFirst();
+        }
+        User user =new User(cursor.getString(1),cursor.getString(2));
+        return user;
+    }
+    public User getUserByName(String name)
+    {
+        Cursor cursor=db.query(UserDatabase.TABLE_NAME,columns,UserDatabase.USERNAME+"=?",new String[]{name},null,null,null,null);
+        if(cursor!=null)
+        {
+            cursor.moveToFirst();
+            User user =new User(cursor.getString(1),cursor.getString(2));
+            return user;
+        }
+        return null;
+
+    }
+
 
 }

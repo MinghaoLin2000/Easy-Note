@@ -7,7 +7,19 @@
     tools:context=".EditActivity"
     android:orientation="vertical">
 
+   <androidx.appcompat.widget.Toolbar
+       android:id="@+id/myToolBar"
+       android:layout_width="match_parent"
+       android:layout_height="?attr/actionBarSize"
+       android:background="?attr/colorPrimary"
+       android:elevation="4dp"
+       app:titleTextColor="?attr/titleColor"
+       android:theme="?attr/toolbarTheme"
+       app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+
     <EditText
+        android:layout_below="@+id/myToolBar"
         android:id="@+id/et"
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -16,14 +28,6 @@
 
 
     </EditText>
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/myToolBar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        app:titleTextColor="?attr/titleColor"
-        android:theme="?attr/toolbarTheme"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
 
 </RelativeLayout>

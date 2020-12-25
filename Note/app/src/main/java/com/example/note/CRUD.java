@@ -7,13 +7,25 @@ import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import androidx.core.app.NavUtils;
+
+import com.example.note.db.UserDatabase;
+import com.example.note.domain.User;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class CRUD {
+    public static int check=0;
     SQLiteOpenHelper dbHandler;
     SQLiteDatabase db;
-    private static final String[] columns={
+    private static final String[] User_columns={
+            UserDatabase.ID,
+            UserDatabase.USERNAME,
+            UserDatabase.PASSWORD
+
+    };
+    private static final String[] Note_columns={
             NoteDatabase.ID,
             NoteDatabase.CONTENT,
             NoteDatabase.TIME,
@@ -43,17 +55,29 @@ public class CRUD {
     }
     public Note getNote(long id)
     {
-        Cursor cursor=db.query(NoteDatabase.TABLE_NAME,columns,NoteDatabase.ID+"=?",new String[]{String.valueOf(id)},null,null,null,null);
+        Cursor cursor=db.query(NoteDatabase.TABLE_NAME,Note_columns,NoteDatabase.ID+"=?",new String[]{String.valueOf(id)},null,null,null,null);
         if(cursor!=null)
         {
             cursor.moveToFirst();
+
         }
         Note e =new Note(cursor.getString(1),cursor.getString(2),cursor.getInt(3));
         return e;
+
+    }
+    public Cursor queryData(String key) {
+        Cursor cursor = null;
+        try {
+            String querySql = "select * from notes where content like '%" + key + "%'";
+            cursor = db.rawQuery(querySql, null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cursor;
     }
     public List<Note> getAllNotes()
     {
-        Cursor cursor=db.query(NoteDatabase.TABLE_NAME,columns,null,null,null,null,null);
+        Cursor cursor=db.query(NoteDatabase.TABLE_NAME,Note_columns,null,null,null,null,null);
         List<Note> notes=new ArrayList<>();
         if(cursor.getCount()>0)
         {
@@ -81,6 +105,45 @@ public class CRUD {
     public void removeNote(Note note)
     {
         db.delete(NoteDatabase.TABLE_NAME,NoteDatabase.ID+"="+note.getId(),null);
+    }
+    /**
+     * 用户的crud操作
+     * @param
+     * @return
+     */
+    public User addUser(User user)
+    {
+        ContentValues contentValues=new ContentValues();
+        contentValues.put(UserDatabase.USERNAME,user.getUsername());
+        contentValues.put(UserDatabase.PASSWORD,user.getPassword());
+        long insertId=db.insert(UserDatabase.TABLE_NAME,null,contentValues);
+        user.setId(insertId);
+
+        return user;
+    }
+
+
+    public User getUser(long id)
+    {
+        Cursor cursor=db.query(UserDatabase.TABLE_NAME,User_columns,UserDatabase.ID+"=?",new String[]{String.valueOf(id)},null,null,null,null);
+        if(cursor!=null)
+        {
+            cursor.moveToFirst();
+        }
+        User user =new User(cursor.getString(1),cursor.getString(2));
+        return user;
+    }
+    public User getUserByName(String name)
+    {
+        Cursor cursor=db.query(UserDatabase.TABLE_NAME,User_columns,UserDatabase.USERNAME+"=?",new String[]{name},null,null,null,null);
+        if(cursor!=null)
+        {
+            cursor.moveToFirst();
+            User user =new User(cursor.getString(1),cursor.getString(2));
+            return user;
+        }
+        return null;
+
     }
 
 

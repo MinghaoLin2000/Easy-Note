@@ -1,7 +1,12 @@
 <resources>
 
 
-
+    <style name="ThemeNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#3F51B5</item>
+        <item name="colorPrimaryDark">#303F9F</item>
+        <item name="colorAccent">#FF4081</item>
+        <item name="android:textColorPrimary">#00ff00</item>
+    </style>
     <!-- Base application theme. -->
 
     <style name="DayTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
