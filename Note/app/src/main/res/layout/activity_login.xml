@@ -149,6 +149,7 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/et_username"
+            android:inputType="textPassword"
             android:hint="Password"
             android:layout_below="@+id/et_username"
             android:id="@+id/et_password"/>

@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        app:navigationIcon="@drawable/ic_add_black_24dp"
+        app:navigationIcon="@drawable/ic_baseline_local_florist_24"
         android:elevation="4dp"
         app:title="YenKoc Note"
         app:titleTextColor="?attr/titleColor"
@@ -38,6 +38,26 @@
         android:layout_marginBottom="100dp"
         android:clickable="true"
         app:srcCompat="@drawable/ic_add_white_24dp" />
-
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/select_bar"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/delete_select"
+            android:layout_marginLeft="50dp"
+            android:text="删除所选"
+            ></Button>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="150dp"
+            android:id="@+id/cancel"
+            android:text="取消"
+            ></Button>
+    </LinearLayout>
 
 </RelativeLayout>

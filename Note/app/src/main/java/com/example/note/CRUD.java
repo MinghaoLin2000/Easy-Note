@@ -29,7 +29,8 @@ public class CRUD {
             NoteDatabase.ID,
             NoteDatabase.CONTENT,
             NoteDatabase.TIME,
-            NoteDatabase.MODE
+            NoteDatabase.MODE,
+            NoteDatabase.USERID
     };
     public CRUD(Context context)
     {
@@ -49,6 +50,7 @@ public class CRUD {
         contentValues.put(NoteDatabase.CONTENT,note.getContent());
         contentValues.put(NoteDatabase.TIME,note.getTime());
         contentValues.put(NoteDatabase.MODE,note.getTag());
+        contentValues.put(NoteDatabase.USERID,note.getUserid());
         long insertId=db.insert(NoteDatabase.TABLE_NAME,null,contentValues);
         note.setId(insertId);
         return note;
@@ -74,6 +76,24 @@ public class CRUD {
             e.printStackTrace();
         }
         return cursor;
+    }
+    public List<Note> getAllNotesByUserid(long userid)
+    {
+        Cursor cursor=db.query(NoteDatabase.TABLE_NAME,Note_columns,NoteDatabase.USERID+"=?",new String[]{String.valueOf(userid)},null,null,null);
+        List<Note> notes=new ArrayList<>();
+        if(cursor.getCount()>0)
+        {
+            while(cursor.moveToNext())
+            {
+                Note note=new Note();
+                note.setId(cursor.getLong(cursor.getColumnIndex(NoteDatabase.ID)));
+                note.setContent(cursor.getString(cursor.getColumnIndex(NoteDatabase.CONTENT)));
+                note.setTime(cursor.getString(cursor.getColumnIndex(NoteDatabase.TIME)));
+                note.setTag(cursor.getInt(cursor.getColumnIndex(NoteDatabase.MODE)));
+                notes.add(note);
+            }
+        }
+        return notes;
     }
     public List<Note> getAllNotes()
     {
@@ -135,14 +155,20 @@ public class CRUD {
     }
     public User getUserByName(String name)
     {
+        User user=null;
         Cursor cursor=db.query(UserDatabase.TABLE_NAME,User_columns,UserDatabase.USERNAME+"=?",new String[]{name},null,null,null,null);
         if(cursor!=null)
         {
-            cursor.moveToFirst();
-            User user =new User(cursor.getString(1),cursor.getString(2));
-            return user;
+            while (cursor.moveToNext())
+            {
+                user =new User(cursor.getString(cursor.getColumnIndex("username")),cursor.getString(cursor.getColumnIndex("password")));
+                user.setId(cursor.getLong(0));
+            }
+
+
         }
-        return null;
+
+        return user;
 
     }
 

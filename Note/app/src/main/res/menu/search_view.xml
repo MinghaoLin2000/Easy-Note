@@ -2,11 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.bf.offline.MainActivity">
-    <!--<item-->
-    <!--android:id="@+id/action_settings"-->
-    <!--android:orderInCategory="100"-->
-    <!--android:title="@string/action_settings"-->
-    <!--app:showAsAction="never" />-->
 
     <item
         android:id="@+id/menu_search"
@@ -19,7 +14,7 @@
         android:id="@+id/scan_local_music"
         android:icon="@mipmap/ic_launcher"
         android:orderInCategory="100"
-        android:title="happy"
+        android:title="注销用户"
         app:showAsAction="never"
         />
 

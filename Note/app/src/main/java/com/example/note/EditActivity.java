@@ -1,13 +1,22 @@
 package com.example.note;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuItemCompat;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,10 +35,22 @@ public class EditActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
+        SysApplication.getInstance().addActivity(this);
+
         myToolbar=findViewById(R.id.myToolBar);
+        myToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("YenKOC", "onClick: 111");
+                autoSetMessage();
+
+                setResult(RESULT_OK,intent);
+                finish();
+            }
+        });
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setHomeButtonEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         et=findViewById(R.id.et);
         Intent getIntent=getIntent();
         openMode=getIntent.getIntExtra("mode",0);
@@ -45,6 +66,7 @@ public class EditActivity extends BaseActivity {
         }
 
     }
+
     //当按下底下的三个按钮
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
@@ -63,6 +85,8 @@ public class EditActivity extends BaseActivity {
         return super.onKeyDown(keyCode,event);
 
     }
+
+
 
 
     public void autoSetMessage() {
@@ -100,4 +124,9 @@ public class EditActivity extends BaseActivity {
         return simpleDateFormat.format(date);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        return super.onCreateOptionsMenu(menu);
+    }
 }

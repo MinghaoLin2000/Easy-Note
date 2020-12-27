@@ -2,22 +2,35 @@ package com.example.note;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.security.acl.NotOwnerException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static androidx.appcompat.content.res.AppCompatResources.getDrawable;
+
+
 public class NoteAdapter extends BaseAdapter implements Filterable {
     private Context mContext;
-
+    Drawable selected,unselected;
     private List<Note> backList; //原始数据
     private List<Note> noteList;//可以改变的数据
     private MyFilter mFilter;
@@ -63,6 +76,25 @@ public class NoteAdapter extends BaseAdapter implements Filterable {
 
         //Save note id to tag
         v.setTag(noteList.get(position).getId());
+        ImageView check=(ImageView)v.findViewById(R.id.select_checked);
+        if(MainActivity.selectMode)
+        {
+            check.setVisibility(View.VISIBLE);
+        }else
+        {
+            check.setVisibility(View.GONE);
+        }
+
+        if(noteList.get(position).checked)
+        {
+            Drawable drawable1=getDrawable(mContext,R.drawable.ic_checked);
+            check.setImageDrawable(drawable1);
+        }else {
+            Drawable drawable2=getDrawable(mContext,R.drawable.ic_unchecked);
+            check.setImageDrawable(drawable2);
+        }
+
+
 
         return v;
     }

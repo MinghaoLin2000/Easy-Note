@@ -10,14 +10,16 @@ public class NoteDatabase extends SQLiteOpenHelper {
     public static final String ID="id";
     public static final String TIME="time";
     public static final String MODE="mode";
+    public static final String USERID="userid";
+
     public NoteDatabase(Context context)
     {
         super(context,"notes",null,1);
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE notes(id INTEGER PRIMARY KEY AUTOINCREMENT,content TEXT NOT NULL,time TEXT NOT NULL,mode INTEGER DEFAULT 1)");
-        db.execSQL("create table user(id integer primary key,username text,password text,bookeditor text)");
+        db.execSQL("CREATE TABLE notes(id INTEGER PRIMARY KEY AUTOINCREMENT,content TEXT NOT NULL,time TEXT NOT NULL,mode INTEGER DEFAULT 1,userid INTEGER NOT NULL)");
+        db.execSQL("create table user(id integer primary key,username text,password text)");
 
     }
 

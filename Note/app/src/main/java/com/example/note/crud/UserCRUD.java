@@ -64,7 +64,6 @@ public class UserCRUD {
             return user;
         }
         return null;
-
     }
 
 

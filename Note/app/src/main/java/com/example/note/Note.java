@@ -5,11 +5,22 @@ public class Note {
     private String content;
     private String time;
     private int tag;
+    private long userid;
+    public boolean checked=false;
     public Note()
     {
 
     }
-    public Note(String content,String time,int tag)
+
+    public long getUserid() {
+        return userid;
+    }
+
+    public void setUserid(long userid) {
+        this.userid = userid;
+    }
+
+    public Note(String content, String time, int tag)
     {
         this.content=content;
         this.time=time;

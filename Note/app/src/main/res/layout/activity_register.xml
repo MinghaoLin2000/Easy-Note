@@ -38,10 +38,12 @@
             android:layout_height="wrap_content"
             android:hint="Password"
             android:id="@+id/et_register_password"
+            android:inputType="textPassword"
             />
         <EditText
             android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:inputType="textPassword"
             android:hint="Confirm Password"
             android:id="@+id/et_register_comfirm_password"
             />

@@ -58,11 +58,20 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     CRUD crud=new CRUD(context);
                         User user=new User(username,password);
                         crud.open();
-                        crud.addUser(user);
-                        crud.close();
-                        Toast.makeText(this, "注册成功,快去登陆", Toast.LENGTH_SHORT).show();
-                        Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
-                        finish();
+                        if(crud.getUserByName(username)!=null)
+                        {
+                            Toast.makeText(this, "用户名已经被注册了！请重新输入", Toast.LENGTH_SHORT).show();
+                            et_username.setText("");
+                            et_password.setText("");
+                            et_confirm_password.setText("");
+                        }else {
+                            crud.addUser(user);
+                            crud.close();
+                            Toast.makeText(this, "注册成功,快去登陆", Toast.LENGTH_SHORT).show();
+                            Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
+                            finish();
+
+                        }
 
 
 
